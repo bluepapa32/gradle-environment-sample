@@ -2,7 +2,7 @@ Multiple Environment sample
 
 -----------------------------------------------------------------------------
 
- $ git clone git@github.com:bluepapa32/gradle-wrapper-sample.git
+ $ git clone git@github.com:bluepapa32/gradle-environment-sample.git
  $ cd gradle-environment-sample
  $ ./gradlew -q
  http://app:8080/setting
