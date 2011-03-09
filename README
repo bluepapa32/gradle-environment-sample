@@ -1,0 +1,22 @@
+Multiple Environment sample
+
+-----------------------------------------------------------------------------
+
+ $ git clone git@github.com:bluepapa32/gradle-wrapper-sample.git
+ $ cd gradle-environment-sample
+ $ ./gradlew -q
+ http://app:8080/setting
+
+ $ ./gradlew -q -Penvironment=development
+ http://app:8080/setting
+
+ $ ./gradlew -q -Penvironment=test
+ http://app/setting
+
+ $ ./gradlew -q -Penvironment=production
+ https://app/setting
+
+ $ GRADLE_ENV=production ./gradlew -q
+ https://app/setting
+
+-----------------------------------------------------------------------------
