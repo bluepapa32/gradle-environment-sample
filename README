@@ -4,19 +4,33 @@ Multiple Environment sample
 
  $ git clone git@github.com:bluepapa32/gradle-environment-sample.git
  $ cd gradle-environment-sample
+
+ =========================
+  Use default environment
+ =========================
  $ ./gradlew -q
  http://app:8080/setting
 
- $ ./gradlew -q -Penvironment=development
+
+ ===================
+  Use the -P option
+ ===================
+ $ ./gradlew -q -Penvironment=test
  http://app:8080/setting
 
- $ ./gradlew -q -Penvironment=test
- http://app/setting
 
- $ ./gradlew -q -Penvironment=production
- https://app/setting
-
+ =========================================
+  Use the GRADLE_ENV environment variable
+ =========================================
  $ GRADLE_ENV=production ./gradlew -q
  https://app/setting
+
+
+ =====================================
+  Use $HOME/.gradle/gradle.properties
+ =====================================
+ $ echo "env=test" >> $HOME/.gradle/gradle.properties 
+ $ ./gradlew -q
+ http://app:8080/setting
 
 -----------------------------------------------------------------------------

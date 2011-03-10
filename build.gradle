@@ -1,18 +1,13 @@
-task env << {
-    env = 'development' 
+defaultTasks 'build'
 
-    if (System.env['GRADLE_ENV']) {
-        env = System.env['GRADLE_ENV']
-    }
+if (!hasProperty('env')) {
+    env = System.env['GRADLE_ENV'] ?: 'development' 
+}
 
-    if (project.hasProperty('environment')) {
-        env = project.property('environment')
-    }
+url = file("environment/${env}.gradle").toURL()
+config = new ConfigSlurper().parse(url);
 
-    url = file("environment/${env}.gradle").toURL()
-    config = new ConfigSlurper().parse(url);
-
+task build << {
     println config.server.url
 }
 
-defaultTasks 'env'
