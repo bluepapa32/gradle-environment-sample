@@ -4,8 +4,21 @@ if (!hasProperty('env')) {
     env = System.env['GRADLE_ENV'] ?: 'development' 
 }
 
-url = file("environment/${env}.gradle").toURL()
-config = new ConfigSlurper().parse(url);
+config = {
+
+    slurper = new ConfigSlurper()
+    slurper.binding = project.properties
+
+    files = [
+        "environment/default.gradle",
+        "environment/${env}.gradle",
+        "${System.properties['user.home']}/.gradle/environment.gradle"
+    ]
+
+    files.inject(new ConfigObject()) { config, name ->
+        file(name).with { it.exists() ? config.merge(slurper.parse(it.toURL())) : config }
+    }
+}()
 
 task build << {
     println config.server.url
