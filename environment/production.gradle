@@ -3,5 +3,6 @@ server {
 }
 
 database {
+    driverClassName = "oracle.jdbc.driver.OracleDriver"
     url = "jdbc:oracle:thin:dbserv:1521:prodDb"
 }
