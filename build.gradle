@@ -1,28 +1,31 @@
-defaultTasks 'build'
+defaultTasks 'clean', 'build'
+
+apply plugin: 'java'
 
 if (!hasProperty('env')) {
     env = System.env['GRADLE_ENV'] ?: 'development' 
 }
 
-config = {
-
-    slurper = new ConfigSlurper()
+{ ->
+    def slurper = new ConfigSlurper()
     slurper.binding = project.properties
 
-    files = files("environment/default.gradle",
+    def files = files("environment/default.gradle",
                   "environment/${env}.gradle",
                   "${System.properties['user.home']}/.gradle/environment.gradle")
 
-    files.inject(new ConfigObject()) { config, file ->
+    def config = files.inject(new ConfigObject()) { config, file ->
         file.exists() ? config.merge(slurper.parse(file.toURL())) : config
     }
+    
+    config.each { k, v -> setProperty k, v }
 }()
 
-task build << {
-    println "server.url: ${config.server.url}"
-    println "database.driverClassName: ${config.database.driverClassName}"
-    println "database.url: ${config.database.url}"
-    println "database.username: ${config.database.username}"
-    println "database.password: ${config.database.password}"
+processResources {
+    expand (project.properties)
+}
+
+build << {
+    println file("${sourceSets.main.classesDir}/Application.properties").text
 }
 
