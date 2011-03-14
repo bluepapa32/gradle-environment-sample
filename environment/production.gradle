@@ -2,3 +2,6 @@ server {
     url = 'https://app/setting'
 }
 
+database {
+    url = "jdbc:oracle:thin:dbserv:1521:prodDb"
+}
