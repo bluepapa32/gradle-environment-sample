@@ -6,10 +6,10 @@ if (!hasProperty('env')) {
 
 config = {
 
-    slurper = new ConfigSlurper()
+    def slurper = new ConfigSlurper()
     slurper.binding = project.properties
 
-    files = files("environment/default.gradle",
+    def files = files("environment/default.gradle",
                   "environment/${env}.gradle",
                   "${System.properties['user.home']}/.gradle/environment.gradle")
 
