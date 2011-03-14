@@ -1,0 +1,6 @@
+config2 = [
+    server: [
+        url: 'http://apps:8080/settings'
+    ]
+]
+
