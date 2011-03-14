@@ -17,9 +17,9 @@ Multiple Environment sample
  database.password: 
 
 
- ===================
-  Use the -P option
- ===================
+ =================================================
+  Specify the test environment with the -P option
+ =================================================
  $ ./gradlew -q -Penv=test
  server.url: http://app/setting
  database.driverClassName: org.hsqldb.jdbcDriver
@@ -28,9 +28,9 @@ Multiple Environment sample
  database.password: 
 
 
- =========================================
-  Use the GRADLE_ENV environment variable
- =========================================
+ =============================================================================
+  Specify the production environment with the GRADLE_ENV environment variable
+ =============================================================================
  $ GRADLE_ENV=production ./gradlew -q
  server.url: https://app/setting
  database.driverClassName: oracle.jdbc.driver.OracleDriver
@@ -39,9 +39,9 @@ Multiple Environment sample
  database.password: 
 
 
- =====================================
-  Use $HOME/.gradle/gradle.properties
- =====================================
+ ===================================================================
+  Specify the test environment with $HOME/.gradle/gradle.properties
+ ===================================================================
  $ echo "env=test" >> $HOME/.gradle/gradle.properties 
  $ ./gradlew -q
  server.url: http://app/setting
