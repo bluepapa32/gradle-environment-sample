@@ -3,34 +3,66 @@ Multiple Environment sample
 -----------------------------------------------------------------------------
 
  $ git clone https://github.com/bluepapa32/gradle-environment-sample.git
+ $ git checkout 20110314
  $ cd gradle-environment-sample
 
  =========================
   Use default environment
  =========================
  $ ./gradlew -q
- http://app:8080/setting
+ server.url: http://app:8080/setting
+ database.driverClassName: org.hsqldb.jdbcDriver
+ database.url: jdbc:hsqldb:mem:devDB
+ database.username: bluepapa32
+ database.password: 
 
 
- ===================
-  Use the -P option
- ===================
+ =================================================
+  Specify the test environment with the -P option
+ =================================================
  $ ./gradlew -q -Penv=test
- http://app:8080/setting
+ server.url: http://app/setting
+ database.driverClassName: org.hsqldb.jdbcDriver
+ database.url: jdbc:hsqldb:mem:testDB
+ database.username: bluepapa32
+ database.password: 
 
 
- =========================================
-  Use the GRADLE_ENV environment variable
- =========================================
+ =============================================================================
+  Specify the production environment with the GRADLE_ENV environment variable
+ =============================================================================
  $ GRADLE_ENV=production ./gradlew -q
- https://app/setting
+ server.url: https://app/setting
+ database.driverClassName: oracle.jdbc.driver.OracleDriver
+ database.url: jdbc:oracle:thin:dbserv:1521:prodDb
+ database.username: bluepapa32
+ database.password: 
 
 
- =====================================
-  Use $HOME/.gradle/gradle.properties
- =====================================
+ ===================================================================
+  Specify the test environment with $HOME/.gradle/gradle.properties
+ ===================================================================
  $ echo "env=test" >> $HOME/.gradle/gradle.properties 
  $ ./gradlew -q
- http://app:8080/setting
+ server.url: http://app/setting
+ database.driverClassName: org.hsqldb.jdbcDriver
+ database.url: jdbc:hsqldb:mem:testDB
+ database.username: bluepapa32
+ database.password: 
 
+
+ ======================================
+  Use $HOME/.gradle/environment.gradle
+ ======================================
+ $ vi $HOME/.gradle/environment.gradle
+ database {
+    password = 'secret'
+ }
+
+ $ ./gradlew -q -Penv=production
+ server.url: https://app/setting
+ database.driverClassName: oracle.jdbc.driver.OracleDriver
+ database.url: jdbc:oracle:thin:dbserv:1521:prodDb
+ database.username: bluepapa32
+ database.password: secret
 -----------------------------------------------------------------------------

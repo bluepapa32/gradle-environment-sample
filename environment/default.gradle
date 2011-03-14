@@ -1,3 +1,9 @@
 server {
     url = 'http://app:8081/setting'
 }
+
+database {
+    driverClassName = "org.hsqldb.jdbcDriver"
+    username = 'bluepapa32'
+    password = ''
+}

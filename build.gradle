@@ -19,6 +19,10 @@ config = {
 }()
 
 task build << {
-    println config.server.url
+    println "server.url: ${config.server.url}"
+    println "database.driverClassName: ${config.database.driverClassName}"
+    println "database.url: ${config.database.url}"
+    println "database.username: ${config.database.username}"
+    println "database.password: ${config.database.password}"
 }
 

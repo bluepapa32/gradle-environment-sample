@@ -2,3 +2,6 @@ server {
     url = 'http://app:8080/setting'
 }
 
+database {
+    url = "jdbc:hsqldb:mem:devDb"
+}
