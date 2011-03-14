@@ -2,7 +2,8 @@ Multiple Environment sample
 
 -----------------------------------------------------------------------------
 
- $ git clone git@github.com:bluepapa32/gradle-environment-sample.git
+ $ git clone git://github.com/bluepapa32/gradle-environment-sample.git
+ $ git checkout 20110310
  $ cd gradle-environment-sample
 
  =========================
