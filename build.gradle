@@ -11,8 +11,8 @@ if (!hasProperty('env')) {
     slurper.binding = project.properties
 
     def files = files("environment/default.gradle",
-                  "environment/${env}.gradle",
-                  "${System.properties['user.home']}/.gradle/environment.gradle")
+                      "environment/${env}.gradle",
+                      "${System.properties['user.home']}/.gradle/environment.gradle")
 
     def config = files.inject(new ConfigObject()) { config, file ->
         file.exists() ? config.merge(slurper.parse(file.toURL())) : config
