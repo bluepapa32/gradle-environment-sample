@@ -1,0 +1,15 @@
+cat = { name ->
+    println file(name).text
+}
+
+task 'systemProperties' << {
+    new TreeMap(System.properties).each { k, v ->
+        println "${k}: ${v}"
+    }
+}
+
+task 'env' << {
+    new TreeMap(System.env).each { k, v ->
+        println "${k}: ${v}"
+    }
+}

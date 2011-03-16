@@ -21,11 +21,23 @@ if (!hasProperty('env')) {
     config.each { k, v -> setProperty k, v }
 }()
 
+ant.condition(property: "os", value: "windows") { os(family: "windows") }
+ant.condition(property: "os", value: "unix"   ) { os(family: "unix")    }
+
+files(
+    "gradle/${ant.properties['os']}.gradle",
+    "gradle/common.gradle",
+    "gradle/${env}.gradle",
+    "${System.properties['user.home']}/.gradle/build.gradle"
+).each { file ->
+    if (file.exists()) apply from: file
+}
+
 processResources {
     expand (project.properties)
 }
 
 build << {
-    println file("${sourceSets.main.classesDir}/Application.properties").text
+    cat "${sourceSets.main.classesDir}/Application.properties"
 }
 

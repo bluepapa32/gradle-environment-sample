@@ -1,5 +1,6 @@
-config2 = [
-    server: [
-        url: 'https://apps/setting'
-    ]
-]
+defaultTasks 'build', 'deploy'
+
+task deploy(dependsOn: 'build') << {
+    println 'Deploying on the production environment...'
+}
+
