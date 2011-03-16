@@ -3,6 +3,7 @@ Multiple Environment sample
 -----------------------------------------------------------------------------
 
  $ git clone https://github.com/bluepapa32/gradle-environment-sample.git
+ $ git checkout 20110316
  $ cd gradle-environment-sample
 
  =========================
