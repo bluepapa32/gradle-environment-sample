@@ -1,0 +1,7 @@
+server {
+    url = 'http://app/setting'
+}
+
+database {
+    url = "jdbc:hsqldb:mem:ciDb"
+}
